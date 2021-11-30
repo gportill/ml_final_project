@@ -23,3 +23,5 @@ df_usa_only - the rows of full.csv corresponding to only to iso_code USA
 full_biweekly.csv - Drew's dataframe of rows in full.csv with non-na variants data
 
 logan_biweekly.csv - Logan's dataframe of rows in full.csv with non-na variants data
+
+Data_Cleaning&Exploration&LinearRegression.ipynb - Builds on Data_Cleaning&Exploration.ipynb to adjust the imputation (fixes an error) and add linear regression code for new cases and new deaths
