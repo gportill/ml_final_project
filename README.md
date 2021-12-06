@@ -25,3 +25,5 @@ full_biweekly.csv - Drew's dataframe of rows in full.csv with non-na variants da
 logan_biweekly.csv - Logan's dataframe of rows in full.csv with non-na variants data
 
 Data_Cleaning&Exploration&LinearRegression.ipynb - Builds on Data_Cleaning&Exploration.ipynb to adjust the imputation (fixes an error) and add linear regression code for new cases and new deaths
+
+All data sets with names appended with "_new" are equivalent to the old data set but with data collected on 12/5/2021
