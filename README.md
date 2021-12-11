@@ -19,5 +19,7 @@
 3. LinearRegressions: Performs Linear Regressions on deaths & cases for imputed data
 4. histograms folder - contains jpg images of histograms for each of the predictors/response in the regression
 5. GLMs: Notebook for generalized linear regressions. Current model is preliminary, will be updated
+6. RNN-pytorch: Notebook for RNN model
+7. TimeStep_Dataframe.ipynb: Notebook for preparing data for RNN. Finds consecutive rows of biweekly data.
 
 All data sets with names appended with "_new" are equivalent to the old data set but with data collected on 12/5/2021
