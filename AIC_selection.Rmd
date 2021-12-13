@@ -1,0 +1,63 @@
+---
+title: "AIC_selection"
+author: "Drew Prinster"
+date: "12/13/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+is_installed <- function(mypkg) is.element(mypkg, installed.packages()[,1])
+
+if(!is_installed("MASS")) {
+  install.packages("MASS",repos="http://lib.stat.cmu.edu/R/CRAN")
+}
+
+```
+
+
+
+
+
+```{r}
+X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xcases_before_selection.csv")
+y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ycases_before_selection.csv")
+print(colnames(X))
+
+X_new = scale(X, center= FALSE)
+y_new = scale(y, center= FALSE)
+y_new = y_new + 0.05
+
+df <- as.data.frame(cbind(X_new, y_new))
+
+fit = suppressWarnings(glm.nb(formula = new_cases_smoothed_per_million ~ people_fully_vaccinated_per_hundred + new_vaccinations_smoothed_per_million + population_density + aged_70_older+ gdp_per_capita + extreme_poverty  + cardiovasc_death_rate + diabetes_prevalence + female_smokers + male_smokers + daily_people_vaccinated_per_hundred + Beta + Epsilon + Gamma + Kappa + Iota + Eta + Delta + Alpha + Lambda + Mu, data = df, link = log, na.action = na.omit))
+
+stepAIC(fit)
+
+```
+
+
+```{r}
+
+X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xdeaths_before_selection.csv")
+y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ydeaths_before_selection.csv")
+print(colnames(X))
+
+
+X_new = scale(X, center= FALSE)
+y_new = scale(y, center= FALSE)
+y_new = y_new + 0.1
+
+df <- as.data.frame(cbind(X_new, y_new))
+
+fit = suppressWarnings(glm.nb(formula = new_deaths_smoothed_per_million ~ people_fully_vaccinated_per_hundred + new_vaccinations_smoothed_per_million + population_density + aged_70_older+ gdp_per_capita + extreme_poverty  + cardiovasc_death_rate + diabetes_prevalence + female_smokers + male_smokers + daily_people_vaccinated_per_hundred + Beta + Epsilon + Gamma + Kappa + Iota + Eta + Delta + Alpha + Lambda + Mu, data = df, link = log, na.action = na.omit))
+
+print(stepAIC(fit))
+
+
+```
+
+
