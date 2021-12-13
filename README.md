@@ -1,5 +1,8 @@
 # ml_final_project
 
+Requirements:
+    Python >= 3.6, statsmodels, pytorch, pandas, numpy, sklearn
+    
 1. Data:
     1. country_vaccine_release_dates.csv: Gwenyth pulled this for knowing when vaccines came out. Use for informed imputation.
     2. covid-variants-area.csv - the raw variant data set
