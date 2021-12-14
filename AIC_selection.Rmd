@@ -23,8 +23,10 @@ if(!is_installed("MASS")) {
 
 
 ```{r}
-X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xcases_before_selection.csv")
-y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ycases_before_selection.csv")
+## 1.3.1
+
+X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xcases_before_selection1.3.1.csv")
+y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ycases_before_selection1.3.1.csv")
 print(colnames(X))
 
 X_new = scale(X, center= FALSE)
@@ -39,11 +41,33 @@ stepAIC(fit)
 
 ```
 
+```{r}
+## 1.3.3
+
+X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xcases_before_selection1.3.3.csv")
+y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ycases_before_selection1.3.3.csv")
+print(colnames(X))
+
+X_new = scale(X, center= FALSE)
+y_new = scale(y, center= FALSE)
+y_new = y_new + 0.05
+print(colnames(X_new))
+
+df <- as.data.frame(cbind(X_new, y_new))
+
+fit = suppressWarnings(glm.nb(formula = new_cases_smoothed_per_million ~ people_fully_vaccinated_per_hundred + new_vaccinations_smoothed_per_million + population_density + aged_70_older + gdp_per_capita + extreme_poverty + cardiovasc_death_rate + diabetes_prevalence + female_smokers + male_smokers + daily_people_vaccinated_per_hundred + Epsilon + Gamma + Kappa + Iota + Eta + Delta + Alpha + Lambda + Mu + month_yr_02.2021 + month_yr_03.2021 + month_yr_04.2021 + month_yr_05.2020 + month_yr_05.2021 + month_yr_06.2020 + month_yr_06.2021 + month_yr_07.2020 + month_yr_07.2021 + month_yr_08.2020 + month_yr_08.2021 + month_yr_09.2020 + month_yr_09.2021 + month_yr_10.2020 + month_yr_10.2021 + month_yr_11.2020 + month_yr_11.2021 + month_yr_12.2020 + month_yr_02.2021 + month_yr_03.2021 + month_yr_04.2021 + month_yr_05.2020 + month_yr_05.2021 + month_yr_06.2020 + month_yr_06.2021 + month_yr_07.2020 + month_yr_07.2021 + month_yr_08.2020 + month_yr_08.2021 + month_yr_09.2020 + month_yr_09.2021 + month_yr_10.2020 + month_yr_10.2021 + month_yr_11.2020 + month_yr_11.2021 + month_yr_12.2020, data = df, link = log, na.action = na.omit))
+
+stepAIC(fit, scope = list(lower = ~Alpha + Delta + people_fully_vaccinated_per_hundred, upper=fit))
+
+```
+
+
 
 ```{r}
+## 1.3.4
 
-X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xdeaths_before_selection.csv")
-y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ydeaths_before_selection.csv")
+X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xdeaths_before_selection1.3.4.csv")
+y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ydeaths_before_selection1.3.4.csv")
 print(colnames(X))
 
 
@@ -53,9 +77,30 @@ y_new = y_new + 0.1
 
 df <- as.data.frame(cbind(X_new, y_new))
 
-fit = suppressWarnings(glm.nb(formula = new_deaths_smoothed_per_million ~ people_fully_vaccinated_per_hundred + new_vaccinations_smoothed_per_million + population_density + aged_70_older+ gdp_per_capita + extreme_poverty  + cardiovasc_death_rate + diabetes_prevalence + female_smokers + male_smokers + daily_people_vaccinated_per_hundred + Beta + Epsilon + Gamma + Kappa + Iota + Eta + Delta + Alpha + Lambda + Mu, data = df, link = log, na.action = na.omit))
+fit = suppressWarnings(glm.nb(formula = new_deaths_smoothed_per_million ~ people_fully_vaccinated_per_hundred + new_vaccinations_smoothed_per_million + population_density + aged_70_older + gdp_per_capita + extreme_poverty + cardiovasc_death_rate + diabetes_prevalence + female_smokers + male_smokers + daily_people_vaccinated_per_hundred + Beta + Epsilon + Gamma + Kappa + Iota + Eta + Delta + Alpha + Lambda + Mu, data = df, link = log, na.action = na.omit))
 
-print(stepAIC(fit))
+stepAIC(fit, scope = list(lower = ~Alpha + Delta + people_fully_vaccinated_per_hundred, upper=fit))
+
+
+```
+
+```{r}
+## 1.3.6
+
+X = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_Xdeaths_before_selection1.3.6.csv")
+y = read.csv("/Users/dprinster/Documents/JHU_2021Fall/MachineLearning/ml_final_project-main/Data/GLM_ydeaths_before_selection1.3.6.csv")
+print(colnames(X))
+
+
+X_new = scale(X, center= FALSE)
+y_new = scale(y, center= FALSE)
+y_new = y_new + 0.1
+
+df <- as.data.frame(cbind(X_new, y_new))
+
+fit = suppressWarnings(glm.nb(formula = new_deaths_smoothed_per_million ~ people_fully_vaccinated_per_hundred + new_vaccinations_smoothed_per_million + population_density + aged_70_older + gdp_per_capita + extreme_poverty + cardiovasc_death_rate + diabetes_prevalence + female_smokers + male_smokers + daily_people_vaccinated_per_hundred + Epsilon + Gamma + Kappa + Iota + Eta + Delta + Alpha + Lambda + Mu + month_yr_02.2021 + month_yr_03.2021 + month_yr_04.2021 + month_yr_05.2020 + month_yr_05.2021 + month_yr_06.2020 + month_yr_06.2021 + month_yr_07.2020 + month_yr_07.2021 + month_yr_08.2020 + month_yr_08.2021 + month_yr_09.2020 + month_yr_09.2021 + month_yr_10.2020 + month_yr_10.2021 + month_yr_11.2020 + month_yr_11.2021 + month_yr_12.2020, data = df, link = log, na.action = na.omit))
+
+stepAIC(fit, scope = list(lower = ~Alpha + Delta + people_fully_vaccinated_per_hundred, upper=fit))
 
 
 ```
